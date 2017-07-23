@@ -3,7 +3,7 @@
     <string name="order">Order</string>
     <string name="quantity">QUANTITY</string>
     <string name="Values">1</string>
-    <string name="Price">Price</string>
+    <string name="orderSum">ORDER SUMMARY</string>
     <string name="prices">0</string>
     <string name="increment">+</string>
     <string name="decrement">-</string>
