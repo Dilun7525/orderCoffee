@@ -1,10 +1,4 @@
-package com.example.android.justjava; /**
- * IMPORTANT: Add your package below. Package name can be found in the project's AndroidManifest.xml file.
- * This is the package name our example uses:
- * <p>
- * package com.example.android.justjava;
- */
-
+package com.example.android.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -39,42 +33,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void submitOrder(View view) {
-        displayMessage();
-    }
-
     /**
      * This method displays the given quantity value on the screen.
      */
 
-    private int reedDisplay() {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        return Integer.parseInt((quantityTextView.getText()).toString());
-    }
 
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText(String.valueOf(number));
     }
 
-    /**
-     * This method displays the given price on the screen.
-     */
-    private String displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        return (NumberFormat.getCurrencyInstance().format(number));
-
+    public void submitOrder(View view) {
+        displayMessage();
     }
 
     private void displayMessage() {
-        StringBuilder priceMessage = new StringBuilder();
-        priceMessage.append("Name: Kunal Balbeskin");
-        priceMessage.append("\nQuantity: " + quantity + " coffee");
-        priceMessage.append("\nTotal: ");
-        priceMessage.append(displayPrice(quantity * priceOfCoffee));
-        priceMessage.append("\n------------------------------");
-        priceMessage.append("\nThank YOU!");
+        int number = quantity * priceOfCoffee;
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(priceMessage.toString());
+        String priceTotal;
+        priceTotal = (NumberFormat.getCurrencyInstance().format(number));
+        String priceMessage =
+                        "Name: Kunal Balbeskin" +
+                        "\nQuantity: " + quantity + " coffee" +
+                        "\nTotal: " + priceTotal +
+                        "\n------------------------------" +
+                        "\nThank YOU!";
+        priceTextView.setText(priceMessage);
     }
 }
