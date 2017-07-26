@@ -55,36 +55,48 @@ public class MainActivity extends AppCompatActivity {
     protected String toppingMessage() {
         String toppings = "";
         toppingPriceTotal = 0;
+        int priseTotal;
 
         CheckBox checkBoxCrem = (CheckBox) findViewById(R.id.crem);
         if (checkBoxCrem.isChecked()) {
-            toppings = toppings + "\nAdd Whipped cream: " + toppingCream + " руб.";
-            toppingPriceTotal += toppingCream;
+            priseTotal = toppingCream * quantity;
+            toppings = toppings + "\nWhipped cream: \t" +
+                    toppingCream + " руб. x " + quantity + " = " +
+                    priseTotal + " руб.";
+            toppingPriceTotal += priseTotal;
         }
         CheckBox checkBoxMarshmallow = (CheckBox) findViewById(R.id.marshmallow);
         if (checkBoxMarshmallow.isChecked()) {
-            toppings = toppings + "\nAdd Marshmallow: " + toppingMarshmallow + " руб.";
-            toppingPriceTotal += toppingMarshmallow;
+            priseTotal = toppingMarshmallow * quantity;
+            toppings = toppings + "\nMarshmallow: \t\t\t" +
+                    toppingMarshmallow + " руб. x " + quantity + " = " +
+                    priseTotal + " руб.";
+            toppingPriceTotal += priseTotal;
         }
         CheckBox checkBoxSyrop = (CheckBox) findViewById(R.id.syrop);
         if (checkBoxSyrop.isChecked()) {
-            toppings = toppings + "\nAdd Syrop: " + toppingSyrop + " руб.";
-            toppingPriceTotal += toppingSyrop;
+            priseTotal = toppingSyrop * quantity;
+            toppings = toppings + "\nSyrop: \t\t\t\t\t\t\t\t\t" +
+                    toppingSyrop + " руб. x " + quantity + " = " +
+                    priseTotal + " руб.";
+            toppingPriceTotal += priseTotal;
         }
         return toppings;
     }
 
     private void displayMessage() {
         String toppings = toppingMessage();
-        int number = quantity * (priceOfCoffee + toppingPriceTotal);
+        int number = quantity * priceOfCoffee + toppingPriceTotal;
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        String priceTotal = "";
+        String priceTotal;
         priceTotal = (NumberFormat.getCurrencyInstance().format(number));
         String priceMessage =
                 "Name: Kunal Balbeskin" +
-                        "\nQuantity: " + quantity + " coffee" +
+                        "\nCoffee: \t\t\t\t\t\t\t" + priceOfCoffee +
+                        " руб. x "  + quantity + " = " +
+                        (priceOfCoffee * quantity) + " руб." +
                         toppings +
-                        "\nTotal: " + priceTotal +
+                        "\nTotal: \t\t\t\t\t\t\t\t\t\t" + priceTotal +
                         "\n------------------------------" +
                         "\nThank YOU!";
         priceTextView.setText(priceMessage);
