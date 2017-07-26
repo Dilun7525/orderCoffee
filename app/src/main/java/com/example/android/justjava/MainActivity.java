@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayMessage() {
         int number = quantity * priceOfCoffee;
-        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         String priceTotal;
         priceTotal = (NumberFormat.getCurrencyInstance().format(number));
         String priceMessage =

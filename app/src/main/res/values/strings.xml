@@ -7,5 +7,9 @@
     <string name="prices">0</string>
     <string name="increment">+</string>
     <string name="decrement">-</string>
+    <string name="ChB_cream">Whipped cream</string>
+    <string name="ChB_marshmallow">marshmallow</string>
+    <string name="ChB_syrop">syrop</string>
+    <string name="toppings">Toppings</string>
 
 </resources>
