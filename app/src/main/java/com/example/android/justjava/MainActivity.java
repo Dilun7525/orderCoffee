@@ -8,11 +8,9 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 
-/**
- * This app displays an order form to order coffee.
- */
+/*This app displays an order form to order coffee. */
 public class MainActivity extends AppCompatActivity {
-
+    //region variables
     /*Переменные: цены, количество по умолчанию*/
     protected int quantity = 1;
     protected int priceOfCoffee = 120;
@@ -21,37 +19,35 @@ public class MainActivity extends AppCompatActivity {
     protected int toppingSyrop = 50;
     protected int toppingPriceTotal = 0;
 
+    //endregion
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    /**
-     * This method is called when the order button is clicked.
-     */
-    public void increment(View view) {
-        //quantity = reedDisplay();
-        display(++quantity);
-    }
-
-    public void decrement(View view) {
-        if (quantity > 0) display(--quantity);
-    }
-
-
-    /**
-     * This method displays the given quantity value on the screen.
-     */
+    //region View display quantity
+    /*Показ количества заказа*/
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText(String.valueOf(number));
     }
 
-    public void submitOrder(View view) {
-        displayMessage();
+    /*Добавление и убавление количества кофе*/
+    public void increment(View view) {
+        display(++quantity);
     }
 
+    public void decrement(View view) {
+
+        if (quantity > 0)
+            display(--quantity);
+    }
+
+    //endregion
+    
+    //region Show Order
+    /*Формирование информации о добавленных топингах*/
     protected String toppingMessage() {
         String toppings = "";
         toppingPriceTotal = 0;
@@ -84,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         return toppings;
     }
 
+    /*Вывод чека */
     private void displayMessage() {
         String toppings = toppingMessage();
         int number = quantity * priceOfCoffee + toppingPriceTotal;
@@ -93,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         String priceMessage =
                 "Name: Kunal Balbeskin" +
                         "\nCoffee: \t\t\t\t\t\t\t" + priceOfCoffee +
-                        " руб. x "  + quantity + " = " +
+                        " руб. x " + quantity + " = " +
                         (priceOfCoffee * quantity) + " руб." +
                         toppings +
                         "\nTotal: \t\t\t\t\t\t\t\t\t\t" + priceTotal +
@@ -101,4 +98,10 @@ public class MainActivity extends AppCompatActivity {
                         "\nThank YOU!";
         priceTextView.setText(priceMessage);
     }
+
+    /*Вывод информации по чеку в view*/
+    public void submitOrder(View view) {
+        displayMessage();
+    }
+    //endregion
 }
