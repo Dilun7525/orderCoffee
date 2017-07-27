@@ -1,5 +1,7 @@
 package com.example.android.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +13,7 @@ import java.text.NumberFormat;
 
 /*This app displays an order form to order coffee. */
 public class MainActivity extends AppCompatActivity {
+
     //region variables
     /*Переменные: цены, количество по умолчанию*/
     protected int quantity = 1;
@@ -19,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected int toppingMarshmallow = 45;
     protected int toppingSyrop = 50;
     protected int toppingPriceTotal = 0;
+    //E-MAIL
+    protected String sEmail = "qwert@darc.com";
+    protected String sEmailTema = "Заказ кофе";
 
     //endregion
     @Override
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     /*Добавление и убавление количества кофе*/
     public void increment(View view) {
         if (quantity < 50)
-        display(++quantity);
+            display(++quantity);
     }
 
     public void decrement(View view) {
@@ -50,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
     //region Show Order
     /*Получение имени клиента*/
-    protected String nameConsomer (){
+    protected String nameConsomer() {
         EditText editText = (EditText) findViewById(R.id.imput_name);
-       return String.valueOf(editText.getText());
+        return String.valueOf(editText.getText());
     }
 
     /*Формирование информации о добавленных топингах*/
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         toppingPriceTotal = 0;
         int priseTotal;
 
+        //Whipped cream
         CheckBox checkBoxCrem = (CheckBox) findViewById(R.id.crem);
         if (checkBoxCrem.isChecked()) {
             priseTotal = toppingCream * quantity;
@@ -69,18 +76,20 @@ public class MainActivity extends AppCompatActivity {
                     priseTotal + " руб.";
             toppingPriceTotal += priseTotal;
         }
+        //Marshmallow
         CheckBox checkBoxMarshmallow = (CheckBox) findViewById(R.id.marshmallow);
         if (checkBoxMarshmallow.isChecked()) {
             priseTotal = toppingMarshmallow * quantity;
-            toppings = toppings + "\nMarshmallow: \t\t\t" +
+            toppings = toppings + "\nMarshmallow: \t\t" +
                     toppingMarshmallow + " руб. x " + quantity + " = " +
                     priseTotal + " руб.";
             toppingPriceTotal += priseTotal;
         }
+        //Syrop
         CheckBox checkBoxSyrop = (CheckBox) findViewById(R.id.syrop);
         if (checkBoxSyrop.isChecked()) {
             priseTotal = toppingSyrop * quantity;
-            toppings = toppings + "\nSyrop: \t\t\t\t\t\t\t\t\t" +
+            toppings = toppings + "\nSyrop: \t\t\t\t\t\t\t\t" +
                     toppingSyrop + " руб. x " + quantity + " = " +
                     priseTotal + " руб.";
             toppingPriceTotal += priseTotal;
@@ -89,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*Вывод чека */
-    private void displayMessage() {
+    private String displayMessage() {
         String toppings = toppingMessage();
         int number = quantity * priceOfCoffee + toppingPriceTotal;
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
@@ -97,19 +106,35 @@ public class MainActivity extends AppCompatActivity {
         priceTotal = (NumberFormat.getCurrencyInstance().format(number));
         String priceMessage =
                 "Name: " + nameConsomer() +
-                        "\nCoffee: \t\t\t\t\t\t\t" + priceOfCoffee +
+                        "\nCoffee: \t\t\t\t\t" + priceOfCoffee +
                         " руб. x " + quantity + " = " +
                         (priceOfCoffee * quantity) + " руб." +
                         toppings +
-                        "\nTotal: \t\t\t\t\t\t\t\t\t\t" + priceTotal +
+                        "\nTotal: \t\t\t\t\t\t\t\t" + priceTotal +
                         "\n------------------------------" +
                         "\nThank YOU!";
-        priceTextView.setText(priceMessage);
+        return priceMessage;
     }
 
     /*Вывод информации по чеку в view*/
     public void submitOrder(View view) {
-        displayMessage();
+        String[] adr = {sEmail};            // Адрес email
+        String temaEmail = sEmailTema;      // Тема email
+        String textMail = displayMessage(); // Сообщение в email
+        composeEmail(adr,temaEmail, textMail);
     }
+
     //endregion
+
+    /*Отправка заказа по email*/
+    public void composeEmail(String[] addresses, String subject, String textEmail) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, textEmail);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 }
