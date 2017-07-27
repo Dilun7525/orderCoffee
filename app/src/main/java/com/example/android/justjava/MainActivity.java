@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -45,8 +46,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //endregion
-    
+
     //region Show Order
+    /*Получение имени клиента*/
+    protected String nameConsomer (){
+        EditText editText = (EditText) findViewById(R.id.imput_name);
+       return String.valueOf(editText.getText());
+    }
+
     /*Формирование информации о добавленных топингах*/
     protected String toppingMessage() {
         String toppings = "";
@@ -88,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         String priceTotal;
         priceTotal = (NumberFormat.getCurrencyInstance().format(number));
         String priceMessage =
-                "Name: Kunal Balbeskin" +
+                "Name: " + nameConsomer() +
                         "\nCoffee: \t\t\t\t\t\t\t" + priceOfCoffee +
                         " руб. x " + quantity + " = " +
                         (priceOfCoffee * quantity) + " руб." +
