@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*Добавление и убавление количества кофе*/
     public void increment(View view) {
+        if (quantity < 50)
         display(++quantity);
     }
 
