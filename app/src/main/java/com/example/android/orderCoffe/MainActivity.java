@@ -1,4 +1,4 @@
-package com.example.android.justjava;
+package com.example.android.jastjava;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected int toppingPriceTotal = 0;
     //E-MAIL
     protected String sEmail = "qwert@darc.com";
-    protected String sEmailTema = "Заказ кофе";
+    protected String sEmailTema = getString(R.string.j_buying_coffee);
 
     //endregion
     @Override
@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
         CheckBox checkBoxCrem = (CheckBox) findViewById(R.id.crem);
         if (checkBoxCrem.isChecked()) {
             priseTotal = toppingCream * quantity;
-            toppings = toppings + "\nWhipped cream: \t" +
-                    toppingCream + " руб. x " + quantity + " = " +
-                    priseTotal + " руб.";
+            toppings = toppings + getString(R.string.j_whipped_cream) +
+                    toppingCream + getString(R.string.j_currency) + " x " + quantity + " = " +
+                    priseTotal + getString(R.string.j_currency);
             toppingPriceTotal += priseTotal;
         }
         //Marshmallow
@@ -101,18 +101,17 @@ public class MainActivity extends AppCompatActivity {
     private String displayMessage() {
         String toppings = toppingMessage();
         int number = quantity * priceOfCoffee + toppingPriceTotal;
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         String priceTotal;
         priceTotal = (NumberFormat.getCurrencyInstance().format(number));
-        String priceMessage =
-                "Name: " + nameConsomer() +
-                        "\nCoffee: \t\t\t\t\t" + priceOfCoffee +
-                        " руб. x " + quantity + " = " +
-                        (priceOfCoffee * quantity) + " руб." +
-                        toppings +
-                        "\nTotal: \t\t\t\t\t\t\t\t" + priceTotal +
-                        "\n------------------------------" +
-                        "\nThank YOU!";
+        String priceMessage;
+        priceMessage = "Name: " + nameConsomer() +
+                "\nCoffee: \t\t\t\t\t" + priceOfCoffee +
+                " руб. x " + quantity + " = " +
+                (priceOfCoffee * quantity) + " руб." +
+                toppings +
+                "\nTotal: \t\t\t\t\t\t\t\t" + priceTotal +
+                "\n------------------------------" +
+                "\nThank YOU!";
         return priceMessage;
     }
 
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         String[] adr = {sEmail};            // Адрес email
         String temaEmail = sEmailTema;      // Тема email
         String textMail = displayMessage(); // Сообщение в email
-        composeEmail(adr,temaEmail, textMail);
+        composeEmail(adr, temaEmail, textMail);
     }
 
     //endregion
