@@ -9,10 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:verticalScrollbarPosition="right"
-        tools:context="com.example.android.justjava.MainActivity">
+        tools:context="com.example.android.orderCoffee.MainActivity">
         <!-- Ввод имени -->
         <EditText
-            android:id="@+id/imput_name"
+            android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/imput_name"
+            android:layout_below="@id/input_name"
             android:paddingTop="10dp"
             android:text="@string/toppings"
             android:textAllCaps="true"
@@ -42,7 +42,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/crem"
+                android:id="@+id/cream"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:duplicateParentState="false"
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:duplicateParentState="false"
-                android:text="@string/ChB_syrop" />
+                android:text="@string/ChB_syrup" />
 
 
         </LinearLayout>

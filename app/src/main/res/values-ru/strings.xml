@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Just Java</string>
+    <string name="you_name">Ваше имя</string>
+    <string name="toppings">Добавки</string>
+    <string name="quantity">Количество</string>
+    <string name="ChB_syrup">Сироп</string>
+    <string name="ChB_marshmallow">Зефирки</string>
+    <string name="ChB_cream">Взбитые сливки</string>
+    <string name="order">Заказ</string>
+    <string name="orderSum">Чек заказа</string>
+
+    <!--Date MainActivity.java-->
+    <string name="j_theme_mail">Заказ кофе</string>
+    <string name="j_currency">" руб."</string>
+    <string name="j_whipped_cream">\nВзбитые сливки:\t</string>
+    <string name="syrup">\nСироп: \t</string>
+    <string name="j_marshmallow">\nЗефирки: \t</string>
+    <string name="Name_consomer">Имя:\t</string>
+    <string name="Coffee">\nКофе: \t</string>
+    <string name="total">\nИтог: \t</string>
+    <string name="thenk_you">\nБлагодарим Вас за покупку!</string>
+</resources>

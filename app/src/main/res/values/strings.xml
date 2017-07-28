@@ -2,15 +2,26 @@
     <string name="app_name">Just Java</string>
     <string name="order">Order</string>
     <string name="quantity">QUANTITY</string>
-    <string name="Values">1</string>
+    <string name="Values" translatable="false">1</string>
     <string name="orderSum">ORDER SUMMARY</string>
-    <string name="prices">0</string>
-    <string name="increment">+</string>
-    <string name="decrement">-</string>
+    <string name="prices" translatable="false">0</string>
+    <string name="increment" translatable="false">+</string>
+    <string name="decrement" translatable="false">-</string>
     <string name="ChB_cream">Whipped cream</string>
     <string name="ChB_marshmallow">marshmallow</string>
-    <string name="ChB_syrop">syrop</string>
+    <string name="ChB_syrup">syrup</string>
     <string name="toppings">Toppings</string>
     <string name="you_name">You name</string>
+
+    <!--Date MainActivity.java-->
+    <string name="j_theme_mail">Buying coffee</string>
+    <string name="j_whipped_cream">\nWhipped cream: \t</string>
+    <string name="j_marshmallow">\nMarshmallow: \t</string>
+    <string name="j_currency"> $</string>
+    <string name="syrup">\nSyrup: \t</string>
+    <string name="Name_consomer">Name:\t</string>
+    <string name="Coffee">\nCoffee: \t</string>
+    <string name="total">\nTotal: \t</string>
+    <string name="thenk_you">\nThank YOU!</string>
 
 </resources>

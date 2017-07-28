@@ -1,4 +1,4 @@
-package com.example.android.jastjava;
+package com.example.android.orderCoffe;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,14 +17,13 @@ public class MainActivity extends AppCompatActivity {
     //region variables
     /*Переменные: цены, количество по умолчанию*/
     protected int quantity = 1;
-    protected int priceOfCoffee = 120;
-    protected int toppingCream = 30;
-    protected int toppingMarshmallow = 45;
-    protected int toppingSyrop = 50;
+    protected final int priceOfCoffee = 120;
+    protected final int toppingCream = 30;
+    protected final int toppingMarshmallow = 45;
+    protected final int toppingSyrop = 50;
     protected int toppingPriceTotal = 0;
     //E-MAIL
-    protected String sEmail = "qwert@darc.com";
-    protected String sEmailTema = getString(R.string.j_buying_coffee);
+    protected final String sEmail = "qwert@darc.com";
 
     //endregion
     @Override
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     //region Show Order
     /*Получение имени клиента*/
     protected String nameConsomer() {
-        EditText editText = (EditText) findViewById(R.id.imput_name);
+        EditText editText = (EditText) findViewById(R.id.input_name);
         return String.valueOf(editText.getText());
     }
 
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         int priseTotal;
 
         //Whipped cream
-        CheckBox checkBoxCrem = (CheckBox) findViewById(R.id.crem);
+        CheckBox checkBoxCrem = (CheckBox) findViewById(R.id.cream);
         if (checkBoxCrem.isChecked()) {
             priseTotal = toppingCream * quantity;
             toppings = toppings + getString(R.string.j_whipped_cream) +
@@ -80,18 +79,18 @@ public class MainActivity extends AppCompatActivity {
         CheckBox checkBoxMarshmallow = (CheckBox) findViewById(R.id.marshmallow);
         if (checkBoxMarshmallow.isChecked()) {
             priseTotal = toppingMarshmallow * quantity;
-            toppings = toppings + "\nMarshmallow: \t\t" +
-                    toppingMarshmallow + " руб. x " + quantity + " = " +
-                    priseTotal + " руб.";
+            toppings = toppings + getString(R.string.j_marshmallow) +
+                    toppingMarshmallow + getString(R.string.j_currency) + " x " + quantity + " = " +
+                    priseTotal + getString(R.string.j_currency);
             toppingPriceTotal += priseTotal;
         }
         //Syrop
         CheckBox checkBoxSyrop = (CheckBox) findViewById(R.id.syrop);
         if (checkBoxSyrop.isChecked()) {
             priseTotal = toppingSyrop * quantity;
-            toppings = toppings + "\nSyrop: \t\t\t\t\t\t\t\t" +
-                    toppingSyrop + " руб. x " + quantity + " = " +
-                    priseTotal + " руб.";
+            toppings = toppings + getString(R.string.syrup) +
+                    toppingSyrop + getString(R.string.j_currency) + " x " + quantity + " = " +
+                    priseTotal + getString(R.string.j_currency);
             toppingPriceTotal += priseTotal;
         }
         return toppings;
@@ -104,21 +103,21 @@ public class MainActivity extends AppCompatActivity {
         String priceTotal;
         priceTotal = (NumberFormat.getCurrencyInstance().format(number));
         String priceMessage;
-        priceMessage = "Name: " + nameConsomer() +
-                "\nCoffee: \t\t\t\t\t" + priceOfCoffee +
-                " руб. x " + quantity + " = " +
-                (priceOfCoffee * quantity) + " руб." +
+        priceMessage = getString(R.string.Name_consomer) + nameConsomer() +
+                getString(R.string.Coffee) +  priceOfCoffee + " x " +
+                getString(R.string.j_currency) + quantity + " = " +
+                (priceOfCoffee * quantity) + getString(R.string.j_currency) +
                 toppings +
-                "\nTotal: \t\t\t\t\t\t\t\t" + priceTotal +
+                getString(R.string.total) + priceTotal +
                 "\n------------------------------" +
-                "\nThank YOU!";
+                getString(R.string.thenk_you);
         return priceMessage;
     }
 
     /*Вывод информации по чеку в view*/
     public void submitOrder(View view) {
         String[] adr = {sEmail};            // Адрес email
-        String temaEmail = sEmailTema;      // Тема email
+        String temaEmail  =getString(R.string.j_theme_mail);      // Тема email
         String textMail = displayMessage(); // Сообщение в email
         composeEmail(adr, temaEmail, textMail);
     }
