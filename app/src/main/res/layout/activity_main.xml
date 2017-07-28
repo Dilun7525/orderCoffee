@@ -8,29 +8,31 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
         android:verticalScrollbarPosition="right"
         tools:context="com.example.android.orderCoffee.MainActivity">
         <!-- Ввод имени -->
+
         <EditText
             android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="@string/you_name"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:focusableInTouchMode="true"/>
         <!--END: Ввод имени -->
         <!-- Область топингов -->
         <TextView
             android:id="@+id/topping"
+            style="@style/TitleFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/input_name"
+            android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
-            android:text="@string/toppings"
-            android:textAllCaps="true"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:text="@string/toppings" />
 
         <LinearLayout
             android:id="@+id/AreaBox_topping"
@@ -70,15 +72,13 @@
         <!-- Область изминения количества coffees -->
         <TextView
             android:id="@+id/textView"
+            style="@style/TitleFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/AreaBox_topping"
             android:layout_centerHorizontal="true"
             android:paddingTop="15dp"
-            android:text="@string/quantity"
-            android:textAllCaps="true"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:text="@string/quantity" />
 
         <LinearLayout
             android:id="@+id/quantityLayout"
@@ -91,12 +91,11 @@
 
             <Button
                 android:id="@+id/buttonDecrement"
-                style="@android:style/TextAppearance.Large"
+                style="@style/ButtonFont"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:onClick="decrement"
-                android:text="@string/decrement"
-                android:textColor="#000000" />
+                android:text="@string/decrement" />
 
             <TextView
                 android:id="@+id/quantity_text_view"
@@ -111,27 +110,24 @@
 
             <Button
                 android:id="@+id/buttonIncrement"
-                style="@android:style/TextAppearance.Large"
+                style="@style/ButtonFont"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:onClick="increment"
-                android:text="@string/increment"
-                android:textColor="#000000" />
+                android:text="@string/increment"/>
         </LinearLayout>
         <!-- END: Область изминения количества coffees -->
 
         <!-- Область чека -->
         <TextView
             android:id="@+id/order_summary_text_view"
+            style="@style/TitleFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/quantityLayout"
             android:layout_centerHorizontal="true"
             android:paddingTop="8dp"
-            android:text="@string/orderSum"
-            android:textAllCaps="true"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:text="" />
 
         <TextView
             android:id="@+id/price_text_view"
@@ -145,15 +141,13 @@
 
         <Button
             android:id="@+id/button"
+            style="@style/ButtonFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_below="@id/price_text_view"
-            android:layout_centerHorizontal="true"
             android:onClick="submitOrder"
-            android:text="@string/order"
-            android:textColor="#000000"
-            android:textSize="30sp" />
+            android:text="@string/order" />
         <!--END: Область чека -->
     </RelativeLayout>
 </ScrollView>

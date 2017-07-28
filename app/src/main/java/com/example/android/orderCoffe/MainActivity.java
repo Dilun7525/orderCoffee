@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
         priceTotal = (NumberFormat.getCurrencyInstance().format(number));
         String priceMessage;
         priceMessage = getString(R.string.Name_consomer) + nameConsomer() +
-                getString(R.string.Coffee) +  priceOfCoffee + " x " +
-                getString(R.string.j_currency) + quantity + " = " +
+                getString(R.string.Coffee) + priceOfCoffee +
+                getString(R.string.j_currency) + " x " + quantity + " = " +
                 (priceOfCoffee * quantity) + getString(R.string.j_currency) +
                 toppings +
                 getString(R.string.total) + priceTotal +
@@ -116,10 +116,20 @@ public class MainActivity extends AppCompatActivity {
 
     /*Вывод информации по чеку в view*/
     public void submitOrder(View view) {
+       /*
+        * Раскомменитируйте для включение функционала заказа через email
         String[] adr = {sEmail};            // Адрес email
         String temaEmail  =getString(R.string.j_theme_mail);      // Тема email
         String textMail = displayMessage(); // Сообщение в email
         composeEmail(adr, temaEmail, textMail);
+        */
+
+       /*Функционал вывода чека на экран*/
+        String order = displayMessage();
+        TextView quantityTextViewTitle = (TextView) findViewById(R.id.order_summary_text_view);
+        quantityTextViewTitle.setText(getString(R.string.order));
+        TextView quantityTextView = (TextView) findViewById(R.id.price_text_view);
+        quantityTextView.setText(order);
     }
 
     //endregion
